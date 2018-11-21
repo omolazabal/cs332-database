@@ -1,5 +1,5 @@
 
-CREATE TABLE prerequisites(
+CREATE TABLE IF NOT EXISTS prerequisites(
     course_number VARCHAR(10) NOT NULL,
     PRIMARY KEY (course_number),
     FOREIGN KEY (course_number) REFERENCES course(course_number)

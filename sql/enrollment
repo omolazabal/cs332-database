@@ -1,5 +1,5 @@
 
-CREATE TABLE enrollment(
+CREATE TABLE IF NOT EXISTS enrollment(
     student_cwid INT UNSIGNED NOT NULL,
     section_number INT UNSIGNED NOT NULL,
     course_number VARCHAR(10) NOT NULL,

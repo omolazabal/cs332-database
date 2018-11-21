@@ -1,5 +1,5 @@
 
-CREATE TABLE professor(
+CREATE TABLE IF NOT EXISTS professor(
     ssn NUMERIC(9) NOT NULL,
     name VARCHAR(60) NOT NULL,
     sex ENUM('M', 'F') NOT NULL,
