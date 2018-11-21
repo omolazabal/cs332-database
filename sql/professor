@@ -1,0 +1,16 @@
+
+CREATE TABLE professor(
+    ssn NUMERIC(9) NOT NULL,
+    name VARCHAR(60) NOT NULL,
+    sex ENUM('M', 'F') NOT NULL,
+    street VARCHAR(50) NOT NULL,
+    zip MEDIUMINT UNSIGNED NOT NULL,
+    city VARCHAR(40) NOT NULL,
+    state CHAR(2) NOT NULL DEFAULT "CA",
+    salary FLOAT NOT NULL,
+    title VARCHAR(40) NOT NULL,
+    phone_area_code INT UNSIGNED NOT NULL,
+    phone_digits INT UNSIGNED NOT NULL,
+    PRIMARY KEY (ssn)
+);
+

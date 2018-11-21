@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="uk-height-1-1">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login - UIkit 3 KickOff</title>
+		<link rel="icon" href="img/favicon.ico">
+		<!-- CSS FILES -->
+		<link rel="stylesheet" type="text/css" href="css/uikit.min.css">
+	</head>
+	<body class="uk-height-1-1">
+		<div class="uk-flex uk-flex-center uk-flex-middle uk-background-secondary uk-height-viewport uk-light">
+			<div class="uk-position-bottom-center uk-position-small uk-visible@m">
+				<span class="uk-text-small uk-text-muted">© 2018 Marianne foundation - <a href="#">Created by Michael Rozsypal, Oscar Olazabal, Marianne Tolentino</a></span>
+			</div>
+			<div class="uk-width-medium uk-padding-small">
+				<form action="dog.html">
+					<fieldset class="uk-fieldset">
+                        <legend class="uk-legend">School Database</legend>
+                        <!--Professor-->
+						<div class="uk-margin" id="student">
+							<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1 uk-link-reset" data-uk-toggle="target: #professor;animation: uk-animation-slide-top-small">Professor</button>
+                        </div>
+
+                        <!--Find schedule field-->
+                        <div class="uk-margin" id="professor" hidden>
+                            <form action="dog.html">
+                                <div class="uk-margin-small">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon uk-form-icon-flip"></span>
+                                        <input class="uk-input" placeholder="SOCIAL SECURITY NUMBER" required type="text">
+                                    </div>
+                                </div>
+                                <div class="uk-margin-small">
+                                    <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">FIND SCHEDULE</button>
+                                </div>
+                            </form>
+
+                        <!--Check grades field-->
+                            <div class="uk-margin">
+                                <form action="dog.html">
+                                    <div class="uk-margin-small">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <span class="uk-form-icon uk-form-icon-flip"></span>
+                                            <input class="uk-input" placeholder="COURSE NUMBER" required type="text">
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-small">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <span class="uk-form-icon uk-form-icon-flip"></span>
+                                            <input class="uk-input" placeholder="SECTION NUMBER" required type="text">
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-small">
+                                        <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK GRADE</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!--Student-->
+						<div class="uk-margin" id="professor">
+							<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1 uk-link-reset" data-uk-toggle="target: #student;animation: uk-animation-slide-top-small">Student</button>
+                        </div>
+
+                        <!--Find schedule field-->
+                        <div class="uk-margin-small-top" id="student" hidden>
+                            <form action="dog.html">
+                                <div class="uk-margin-small">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon uk-form-icon-flip"></span>
+                                        <input class="uk-input" placeholder="COURSE NUMBER" required type="text">
+                                    </div>
+                                </div>
+                                <div class="uk-margin-small">
+                                    <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK SCHEDULE</button>
+                                </div>
+                            </form>
+
+                        <!--Check grades field-->
+                            <div class="uk-margin">
+                                <form action="dog.html">
+                                    <div class="uk-margin-small">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <span class="uk-form-icon uk-form-icon-flip"></span>
+                                            <input class="uk-input" placeholder="CWID" required type="text">
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-small">
+                                        <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK TRANSCRIPT</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+					</fieldset>
+				</form>
+				</div>
+			</div>
+		</div>
+		
+		<!-- JS FILES -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit-icons.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+
+CREATE TABLE section(
+    section_number INT UNSIGNED NOT NULL,
+    course_number VARCHAR(10) NOT NULL,
+    professor_ssn NUMERIC(9) NOT NULL,
+    begin_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    number_seats INT UNSIGNED NOT NULL,
+    meeting_dates SET ('sa', 'mo', 'tu', 'we', 'th', 'fr') NOT NULL,
+    classroom VARCHAR(20) NOT NULL,
+    PRIMARY KEY (section_number, course_number),
+    FOREIGN KEY (course_number) REFERENCES course(course_number),
+    FOREIGN KEY (professor_ssn) REFERENCES professor(ssn)
+);
+

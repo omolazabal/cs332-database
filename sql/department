@@ -1,0 +1,11 @@
+
+CREATE TABLE department(
+    department_number INT UNSIGNED NOT NULL,
+    name VARCHAR(40) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    location VARCHAR(40) NOT NULL,
+    chair_ssn NUMERIC(9) NOT NULL,
+    PRIMARY KEY (department_number),
+    FOREIGN KEY (chair_ssn) REFERENCES professor(ssn)
+);
+
