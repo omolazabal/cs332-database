@@ -13,9 +13,9 @@ touch drop
 
 for i in "${files[@]}"
 do
-    echo "DROP TABLE $i;" >> drop
+    echo "DROP TABLE IF EXISTS $i;" >> drop
 done
 
-mysql -h mariadb -u $1 -p $2 < tables
+mysql -h mariadb -u $1 -p $2 < drop
 rm drop
 

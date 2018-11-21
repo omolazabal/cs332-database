@@ -2,6 +2,6 @@
 CREATE TABLE prerequisites(
     course_number VARCHAR(10) NOT NULL,
     PRIMARY KEY (course_number),
-    FOREIGN KEY (course_number) REFERENCES course(course_number),
+    FOREIGN KEY (course_number) REFERENCES course(course_number)
 );
 
