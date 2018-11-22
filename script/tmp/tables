@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS student(
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     address VARCHAR(100) NOT NULL,
-    phone VARCHAR(20) NOT NULL,
+    phone INT UNSIGNED NOT NULL,
     department_number INT UNSIGNED NOT NULL,
     PRIMARY KEY (cwid),
     FOREIGN KEY (department_number) REFERENCES department(department_number)
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS student(
 
 
 CREATE TABLE IF NOT EXISTS course(
-    course_number VARCHAR(10) NOT NULL,
+    course_number INT UNSIGNED NOT NULL,
     title VARCHAR(40) NOT NULL,
     textbook VARCHAR(40) NOT NULL,
     units INT UNSIGNED NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS course(
 
 CREATE TABLE IF NOT EXISTS section(
     section_number INT UNSIGNED NOT NULL,
-    course_number VARCHAR(10) NOT NULL,
+    course_number INT UNSIGNED NOT NULL,
     professor_ssn NUMERIC(9) NOT NULL,
     begin_time TIME NOT NULL,
     end_time TIME NOT NULL,
@@ -66,12 +66,12 @@ CREATE TABLE IF NOT EXISTS section(
 CREATE TABLE IF NOT EXISTS enrollment(
     student_cwid INT UNSIGNED NOT NULL,
     section_number INT UNSIGNED NOT NULL,
-    course_number VARCHAR(10) NOT NULL,
+    course_number INT UNSIGNED NOT NULL,
     grade FLOAT NOT NULL,
     PRIMARY KEY (student_cwid, section_number, course_number),
     FOREIGN KEY (student_cwid) REFERENCES student(cwid),
     FOREIGN KEY (section_number) REFERENCES section(section_number),
-    FOREIGN KEY (course_number) REFERENCES course(course_number)
+    FOREIGN KEY (course_number) REFERENCES section(course_number)
 );
 
 CREATE TABLE IF NOT EXISTS minor(
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS minor(
 
 
 CREATE TABLE IF NOT EXISTS prerequisites(
-    course_number VARCHAR(10) NOT NULL,
+    course_number INT UNSIGNED NOT NULL,
     PRIMARY KEY (course_number),
     FOREIGN KEY (course_number) REFERENCES course(course_number)
 );

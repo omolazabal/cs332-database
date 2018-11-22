@@ -8,8 +8,8 @@ from calendar import timegm
 from datetime import timedelta, MAXYEAR
 from time import time
 
-from dateutil import relativedelta
-from dateutil.tz import tzlocal, tzutc
+from .dateutil import relativedelta
+from .dateutil.tz import tzlocal, tzutc
 
 from faker.utils.datetime_safe import date, datetime, real_date, real_datetime
 from faker.utils import is_string
