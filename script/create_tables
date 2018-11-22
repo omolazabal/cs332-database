@@ -42,7 +42,7 @@ if args.hostname is None:
     process = Popen(['mysql', '-u', args.user, '-p', args.database],
                     stdout=PIPE, stdin=PIPE, encoding='utf8')
 else:
-    process = Popen(['mysql', '-h', args.hostname, '-u', args.user, "-p'"+args.password+"'", args.database],
+    process = Popen(['mysql', '-h', args.hostname, '-u', args.user, '-p', args.database],
                     stdout=PIPE, stdin=PIPE, encoding='utf8')
 
 output = process.communicate('source ' + filename)
