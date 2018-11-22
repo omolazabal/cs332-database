@@ -1,7 +1,7 @@
 
 CREATE TABLE IF NOT EXISTS section(
     section_number INT UNSIGNED NOT NULL,
-    course_number VARCHAR(10) NOT NULL,
+    course_number INT UNSIGNED NOT NULL,
     professor_ssn NUMERIC(9) NOT NULL,
     begin_time TIME NOT NULL,
     end_time TIME NOT NULL,

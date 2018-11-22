@@ -1,0 +1,231 @@
+#!/usr/bin/env python3.6
+
+import random
+from faker import Faker
+
+class Professor:
+    def __init__(self):
+        self.ssn = None
+        self.name = None
+        self.sex = None
+        self.street = None
+        self.zip = None
+        self.city = None
+        self.state = None
+        self.salary = None
+        self.title = None
+        self.phone_area_code = None
+        self.phone_digits = None
+
+class Department:
+    def __init__(self):
+        self.department_number = None
+        self.name = None
+        self.phone = None
+        self.location = None
+        self.chair_ssn = None
+
+class Student:
+    def __init__(self):
+        self.cwid = None
+        self.first_name = None
+        self.last_name = None
+        self.address = None
+        self.phone = None
+        self.department_number = None
+
+class Course:
+    def __init__(self):
+        self.course_number = None
+        self.title = None
+        self.textbook = None
+        self.units = None
+        self.deparment_number = None
+
+class Section:
+    def __init__(self):
+        self.section_number = None
+        self.course_number = None
+        self.professor_ssn = None
+        self.begin_time = None
+        self.end_time = None
+        self.meeting_dates = None
+        self.classroom = None
+        self.number_seats = None
+
+class Enrollment:
+    def __init__(self):
+        self.student_cwid = None
+        self.section_number = None
+        self.course_number = None
+        self.grade = None
+
+def random_professor():
+    prof = Professor()
+    prof.ssn = ''.join(faker.ssn().split('-'))
+    prof.name = faker.name()
+    prof.sex = sex[random.randint(0, 1)]
+    addr = faker.address().split('\n')
+    prof.street = addr[0]
+    prof.city = addr[1].split(',')[0]
+    prof.state = addr[1].split(',')[1].split()[0]
+    prof.zip = addr[1].split(',')[1].split()[1]
+    prof.salary = random.randint(40000, 100000)
+    prof.title = title[random.randint(0, len(title)-1)]
+    prof.phone_area_code = random.randint(100,999)
+    prof.phone_digits = random.randint(1000000,9999999)
+    return prof
+
+def random_department(prof_list):
+    dept = Department()
+    global department_number
+    department_number += 1
+    dept.department_number = department_number
+    dept.name = department_names[random.randint(0, len(department_names)-1)]
+    dept.phone = random.randint(1000000000, 9999999999)
+    dept.location = faker.name().split()[-1]
+    dept.chair_ssn = prof_list[random.randint(0, len(prof_list)-1)].ssn
+    return dept
+
+def random_student(department_list):
+    student = Student()
+    global cwid
+    student.cwid = cwid + 1
+    cwid += 1
+    student.first_name = faker.name().split()[0]
+    student.last_name = faker.name().split()[-1]
+    student.phone = random.randint(1000000000, 9999999999)
+    student.address = faker.address().replace('\n', ', ')
+    student.department_number = department_list[random.randint(0, len(department_list)-1)].department_number
+    return student
+
+def random_course(department_list):
+    course = Course()
+    global course_number
+    course.course_number = course_number + 1
+    course_number += 1
+    i = random.randint(0, len(department_list)-1)
+    course.department_number = department_list[i].department_number
+    course.title = department_list[i].name + str(course.course_number)
+    course.units = random.randint(1, 4)
+    course.textbook = faker.name().split()[-1]
+    return course
+
+def random_section(course_list, professor_list, department_list):
+    section = Section()
+    global section_number
+    section.section_number = section_number + 1
+    section_number += 1
+    section.course_number = course_list[random.randint(0, len(course_list)-1)].course_number
+    section.professor_ssn = professor_list[random.randint(0, len(professor_list)-1)].ssn
+    section.meeting_dates = meeting_dates[random.randint(0, len(meeting_dates)//2-1):random.randint(len(meeting_dates)//2,len(meeting_dates)-1)]
+    time = random.randint(8, 18)
+    section.begin_time = str(time) + ':00:00'
+    section.end_time = str(time+1) + ':00:00'
+    section.classroom = department_list[random.randint(0, len(department_list)-1)].location + ' ' + str(random.randint(1, 400))
+    section.number_seats = random.randint(0, 30)
+    return section
+
+def random_enrollment(student_list, section_list):
+    enroll = Enrollment()
+    enroll.student_cwid = student_list[random.randint(0, len(student_list)-1)].cwid
+    i = random.randint(0, len(section_list)-1)
+    enroll.section_number = section_list[i].section_number
+    enroll.course_number = section_list[i].course_number
+    enroll.grade = random.randint(50, 100)
+    return enroll
+
+filename = 'tmp/data'
+faker = Faker()
+meeting_dates = ('sa', 'mo', 'tu', 'we', 'th', 'fr')
+sex = ('m', 'f')
+title = ('mr', 'dr', 'ms', 'mrs')
+department_names = ['CS', 'MATH', 'GEO', 'BIO', 'MUSIC', 'ART', 'ENG', 'CHEM']
+department_number = 0
+cwid = 0
+course_number = 0
+section_number = 0
+
+professors = []
+departments = []
+students = []
+courses = []
+sections = []
+enrollment_records = []
+for i in range(3):
+    try:
+        professors.append(random_professor())
+    except:
+        i-=1
+for i in range(2):
+    try:
+        departments.append(random_department(professors))
+    except:
+        i-=1
+for i in range(8):
+    try:
+        students.append(random_student(departments))
+    except:
+        i-=1
+for i in range(4):
+    try:
+        courses.append(random_course(departments))
+    except:
+        i-=1
+for i in range(6):
+    try:
+        sections.append(random_section(courses, professors, departments))
+    except:
+        i-=1
+for i in range(20):
+    try:
+        enrollment_records.append(random_enrollment(students, sections))
+    except:
+        i-=1
+
+with open(filename, 'w') as data_file:
+    data_file.write('INSERT INTO professor VALUES\n')
+    for prof in professors:
+        data_file.write('({}, "{}", "{}", "{}", {}, "{}", "{}", {}, "{}", {}, {})'.format(prof.ssn, prof.name, prof.sex, prof.street, prof.zip, prof.city, prof.state, prof.salary, prof.title, prof.phone_area_code, prof.phone_digits))
+        if prof == professors[-1]:
+            data_file.write(';\n\n')
+        else:
+            data_file.write(',\n')
+    data_file.write('INSERT INTO department VALUES\n')
+    for dept in departments:
+        data_file.write('({}, "{}", "{}", "{}", {})'.format(dept.department_number, dept.name, dept.phone, dept.location, dept.chair_ssn))
+        if dept == departments[-1]:
+            data_file.write(';\n\n')
+        else:
+            data_file.write(',\n')
+    data_file.write('INSERT INTO student VALUES\n')
+    for student in students:
+        data_file.write('({}, "{}", "{}", "{}", {}, {})'.format(student.cwid, student.first_name, student.last_name, student.address, student.phone, student.department_number))
+        if student == students[-1]:
+            data_file.write(';\n\n')
+        else:
+            data_file.write(',\n')
+    data_file.write('INSERT INTO course VALUES\n')
+    for course in courses:
+        data_file.write('({}, "{}", "{}", {}, {})'.format(course.course_number, course.title, course.textbook, course.units, course.department_number))
+        if course == courses[-1]:
+            data_file.write(';\n\n')
+        else:
+            data_file.write(',\n')
+    data_file.write('INSERT INTO section VALUES\n')
+    for section in sections:
+        data_file.write('({}, {}, {}, "{}", "{}", {}, {}, "{}")'.format(section.section_number, section.course_number, section.professor_ssn, section.begin_time, section.end_time, section.number_seats, section.meeting_dates, section.classroom))
+        if section == sections[-1]:
+            data_file.write(';\n\n')
+        else:
+            data_file.write(',\n')
+    data_file.write('INSERT INTO enrollment VALUES\n')
+    for record in enrollment_records:
+        data_file.write('({}, {}, {}, {})'.format(record.student_cwid, record.section_number, record.course_number, record.grade))
+        if record == enrollment_records[-1]:
+            data_file.write(';\n\n')
+        else:
+            data_file.write(',\n')
+
+
+

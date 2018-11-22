@@ -2,10 +2,10 @@
 CREATE TABLE IF NOT EXISTS enrollment(
     student_cwid INT UNSIGNED NOT NULL,
     section_number INT UNSIGNED NOT NULL,
-    course_number VARCHAR(10) NOT NULL,
+    course_number INT UNSIGNED NOT NULL,
     grade FLOAT NOT NULL,
     PRIMARY KEY (student_cwid, section_number, course_number),
     FOREIGN KEY (student_cwid) REFERENCES student(cwid),
     FOREIGN KEY (section_number) REFERENCES section(section_number),
-    FOREIGN KEY (course_number) REFERENCES course(course_number)
+    FOREIGN KEY (course_number) REFERENCES section(course_number)
 );
