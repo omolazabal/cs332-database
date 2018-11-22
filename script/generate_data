@@ -17,6 +17,9 @@ class Professor:
         self.phone_area_code = None
         self.phone_digits = None
 
+    def __eq__(self, other):
+        return self.ssn == other.ssn
+
 class Department:
     def __init__(self):
         self.department_number = None
@@ -24,6 +27,9 @@ class Department:
         self.phone = None
         self.location = None
         self.chair_ssn = None
+
+    def __eq__(self, other):
+        return self.department_number == other.department_number
 
 class Student:
     def __init__(self):
@@ -34,6 +40,9 @@ class Student:
         self.phone = None
         self.department_number = None
 
+    def __eq__(self, other):
+        return self.cwid == other.cwid
+
 class Course:
     def __init__(self):
         self.course_number = None
@@ -41,6 +50,9 @@ class Course:
         self.textbook = None
         self.units = None
         self.deparment_number = None
+
+    def __eq__(self, other):
+        return self.course_number == other.course_number
 
 class Section:
     def __init__(self):
@@ -53,12 +65,18 @@ class Section:
         self.classroom = None
         self.number_seats = None
 
+    def __eq__(self, other):
+        return (self.section_number == other.section_number) and (self.course_number == other.course_number)
+
 class Enrollment:
     def __init__(self):
         self.student_cwid = None
         self.section_number = None
         self.course_number = None
         self.grade = None
+
+    def __eq__(self, other):
+        return (self.section_number == other.section_number) and (self.course_number == other.course_number) and (self.student_cwid == other.student_cwid)
 
 def random_professor():
     prof = Professor()
@@ -153,35 +171,35 @@ courses = []
 sections = []
 enrollment_records = []
 for i in range(3):
-    try:
-        professors.append(random_professor())
-    except:
-        i-=1
+    while True:
+        prof = random_professor()
+        if prof not in professors: break
+    professors.append(prof)
 for i in range(2):
-    try:
-        departments.append(random_department(professors))
-    except:
-        i-=1
+    while True:
+        dept = random_department(professors)
+        if dept not in departments: break
+    departments.append(dept)
 for i in range(8):
-    try:
-        students.append(random_student(departments))
-    except:
-        i-=1
+    while True:
+        stu = random_student(departments)
+        if stu not in students: break
+    students.append(stu)
 for i in range(4):
-    try:
-        courses.append(random_course(departments))
-    except:
-        i-=1
+    while True:
+        course = random_course(departments)
+        if course not in courses: break
+    courses.append(course)
 for i in range(6):
-    try:
-        sections.append(random_section(courses, professors, departments))
-    except:
-        i-=1
+    while True:
+        sect = random_section(courses, professors, departments)
+        if sect not in sections: break
+    sections.append(sect)
 for i in range(20):
-    try:
-        enrollment_records.append(random_enrollment(students, sections))
-    except:
-        i-=1
+    while True:
+        rec = random_enrollment(students, sections)
+        if rec not in enrollment_records: break
+    enrollment_records.append(rec)
 
 with open(filename, 'w') as data_file:
     data_file.write('INSERT INTO professor VALUES\n')
@@ -214,7 +232,12 @@ with open(filename, 'w') as data_file:
             data_file.write(',\n')
     data_file.write('INSERT INTO section VALUES\n')
     for section in sections:
-        data_file.write('({}, {}, {}, "{}", "{}", {}, {}, "{}")'.format(section.section_number, section.course_number, section.professor_ssn, section.begin_time, section.end_time, section.number_seats, section.meeting_dates, section.classroom))
+        meetings = ''
+        for dates in section.meeting_dates:
+            meetings += dates
+            if dates != section.meeting_dates[-1]:
+                meetings += ','
+        data_file.write('({}, {}, {}, "{}", "{}", {}, "{}", "{}")'.format(section.section_number, section.course_number, section.professor_ssn, section.begin_time, section.end_time, section.number_seats, meetings, section.classroom))
         if section == sections[-1]:
             data_file.write(';\n\n')
         else:

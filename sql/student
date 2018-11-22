@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS student(
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     address VARCHAR(100) NOT NULL,
-    phone INT UNSIGNED NOT NULL,
+    phone BIGINT UNSIGNED NOT NULL,
     department_number INT UNSIGNED NOT NULL,
     PRIMARY KEY (cwid),
     FOREIGN KEY (department_number) REFERENCES department(department_number)

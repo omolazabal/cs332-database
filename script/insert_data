@@ -1,0 +1,32 @@
+#!/usr/bin/env python3.6
+
+from subprocess import Popen, PIPE
+import argparse
+import getpass
+
+ap = argparse.ArgumentParser()
+ap.add_argument('-s', required=False, type=str,
+                dest='hostname',
+                help='host to connect to')
+ap.add_argument('-u', required=True, type=str,
+                dest='user',
+                help='mysql user')
+ap.add_argument('-d', required=True, type=str,
+                dest='database',
+                help='database to utilize')
+args = ap.parse_args()
+
+filename = 'tmp/data'
+
+if args.hostname is None:
+    print('mysql', '-u', args.user, '-p', args.database)
+    process = Popen(['mysql', '-u', args.user, '-p', args.database],
+                    stdout=PIPE, stdin=PIPE, encoding='utf8')
+else:
+    process = Popen(['mysql', '-h', args.hostname, '-u', args.user, '-p', args.database],
+                    stdout=PIPE, stdin=PIPE, encoding='utf8')
+
+output = process.communicate('source ' + filename)
+print('stdout:', output[0])
+print('stderr:', output[1])
+
