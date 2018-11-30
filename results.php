@@ -20,7 +20,7 @@
     mysql_select_db($username, $link);
 
     $query = "SELECT * FROM professor WHERE ssn=" . $_POST["sno"];
-    $result = mysql_query($query,$link); •
+    $result = mysql_query($query,$link);
 
     printf("SSN: %s<br>\n", mysql_result($result, 0, "ssn"));
     printf("First NAME: %s<br>\n", mysql_result($result, 0, "name"));
