@@ -14,7 +14,7 @@
 				<span class="uk-text-small uk-text-muted">© 2018 Marianne foundation - <a href="#">Created by Michael Rozsypal, Oscar Olazabal, Marianne Tolentino</a></span>
 			</div>
 			<div class="uk-width-medium uk-padding-small">
-				<form action="results.php" method="POST">
+				<form>
 					<fieldset class="uk-fieldset">
                         <legend class="uk-legend">School Database</legend>
                         <!--Professor-->
@@ -24,11 +24,11 @@
 
                         <!--Find schedule field-->
                         <div class="uk-margin" id="professor" hidden>
-                            <form action="results.php">
+                            <form action="results.php" action="results.php" method="POST">
                                 <div class="uk-margin-small">
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon uk-form-icon-flip"></span>
-                                        <input class="uk-input" placeholder="SOCIAL SECURITY NUMBER" required type="text" name="sno">
+                                        <input class="uk-input" placeholder="SOCIAL SECURITY NUMBER" required type="number" name="sno">
                                     </div>
                                 </div>
                                 <div class="uk-margin-small">
