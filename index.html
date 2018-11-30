@@ -29,7 +29,6 @@
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon uk-form-icon-flip"></span>
                                         <input class="uk-input" placeholder="SOCIAL SECURITY NUMBER" required type="text" name="sno">
-                                        <input type="submit">
                                     </div>
                                 </div>
                                 <div class="uk-margin-small">
@@ -105,31 +104,3 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit-icons.min.js"></script>
 	</body>
 </html>
-
-<?php
-    $line = file('config');
-    $credentials = array();
-    $line = trim(str_replace(": ", ':', $line));
-    $lineArr = explode(' ', $line);
-    $database = explode(':', $lineArr[0]);
-    $database = array_pop($database);
-    $username = explode(':', $lineArr[1]);
-    $username = array_pop($username);
-    $password = explode(':', $lineArr[2]);
-    $password = array_pop($password);
-
-    $link = mysql_connect($database, $username, $password);
-    if (!$link) {
-        die('Could not connect: ' . mysql_error());
-    }
-    echo 'Connected successfully<p>';
-    mysql_select_db($username, $link);
-
-    $query = "SELECT * FROM professor WHERE ssn=" . $_POST["sno"];
-    $result = mysql_query($query,$link); •
-
-    printf("SSN: %s<br>\n", mysql_result($result, 0, "ssn"));
-    printf("First NAME: %s<br>\n", mysql_result($result, 0, "name"));
-
-    mysql_close($link);
-?>
