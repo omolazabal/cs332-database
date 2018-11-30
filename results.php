@@ -1,18 +1,8 @@
 <html>
 <body>
 <?php
-    $line = file('config');
-    $credentials = array();
-    $line = trim(str_replace(": ", ':', $line));
-    $lineArr = explode(' ', $line);
-    $database = explode(':', $lineArr[0]);
-    $database = array_pop($database);
-    $username = explode(':', $lineArr[1]);
-    $username = array_pop($username);
-    $password = explode(':', $lineArr[2]);
-    $password = array_pop($password);
-
-    $link = mysql_connect($database, $username, $password);
+    $lines = file('config');
+    $link = mysql_connect($lines[0], $lines[1], $lines[2]);
     if (!$link) {
         die('Could not connect: ' . mysql_error());
     }
@@ -20,6 +10,9 @@
     mysql_select_db($username, $link);
 
     $query = "SELECT * FROM professor WHERE ssn=" . $_POST["sno"];
+    if (!$sql) {
+        die('Error: ' . mysql_error());
+    }
     $result = mysql_query($query,$link);
 
     printf("SSN: %s<br>\n", mysql_result($result, 0, "ssn"));
