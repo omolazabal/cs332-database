@@ -28,31 +28,31 @@
                                 <div class="uk-margin-small">
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon uk-form-icon-flip"></span>
-                                        <input class="uk-input" placeholder="SOCIAL SECURITY NUMBER" required type="text" name="sno">
+                                        <input class="uk-input" placeholder="SOCIAL SECURITY NUMBER" required type="text" name="socal_security_number">
                                     </div>
                                 </div>
                                 <div class="uk-margin-small">
-                                    <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">FIND SCHEDULE</button>
+                                    <button type="submit" name="prof_a" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">FIND SCHEDULE</button>
                                 </div>
                             </form>
 
                         <!--Check grades field-->
                             <div class="uk-margin">
-                                <form action="results.php">
+                                <form action="results.php" method="POST">
                                     <div class="uk-margin-small">
                                         <div class="uk-inline uk-width-1-1">
                                             <span class="uk-form-icon uk-form-icon-flip"></span>
-                                            <input class="uk-input" placeholder="COURSE NUMBER" required type="text">
+                                            <input class="uk-input" placeholder="COURSE NUMBER" required type="text" name="course_number">
                                         </div>
                                     </div>
                                     <div class="uk-margin-small">
                                         <div class="uk-inline uk-width-1-1">
                                             <span class="uk-form-icon uk-form-icon-flip"></span>
-                                            <input class="uk-input" placeholder="SECTION NUMBER" required type="text">
+                                            <input class="uk-input" placeholder="SECTION NUMBER" required type="text" name="section_number">
                                         </div>
                                     </div>
                                     <div class="uk-margin-small">
-                                        <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK GRADE</button>
+                                        <button type="submit" name="prof_b" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK GRADE</button>
                                     </div>
                                 </form>
                             </div>
@@ -66,29 +66,29 @@
 
                         <div class="uk-margin-small-top" id="student" hidden>
                             <!--Find schedule field-->
-                            <form action="results.php">
+                            <form action="results.php" method="POST">
                                 <div class="uk-margin-small">
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon uk-form-icon-flip"></span>
-                                        <input class="uk-input" placeholder="COURSE NUMBER" required type="text">
+                                        <input class="uk-input" placeholder="COURSE NUMBER" required type="text" name="course_number">
                                     </div>
                                 </div>
                                 <div class="uk-margin-small">
-                                    <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK SCHEDULE</button>
+                                    <button type="submit" name="stu_a" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK SCHEDULE</button>
                                 </div>
                             </form>
 
                             <!--Check grades field-->
                             <div class="uk-margin">
-                                <form action="results.php">
+                                <form action="results.php" method="POST">
                                     <div class="uk-margin-small">
                                         <div class="uk-inline uk-width-1-1">
                                             <span class="uk-form-icon uk-form-icon-flip"></span>
-                                            <input class="uk-input" placeholder="CWID" required type="text">
+                                            <input class="uk-input" name='cwid' placeholder="CWID" required type="text">
                                         </div>
                                     </div>
                                     <div class="uk-margin-small">
-                                        <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK TRANSCRIPT</button>
+                                        <button type="submit" name='stu_b' class="uk-button uk-button-primary uk-button-primary uk-width-1-1">CHECK TRANSCRIPT</button>
                                     </div>
                                 </form>
                             </div>
