@@ -243,7 +243,7 @@ with open(filename, 'w') as data_file:
             data_file.write(',\n')
     data_file.write('INSERT INTO enrollment VALUES\n')
     for record in enrollment_records:
-        data_file.write('({}, {}, {}, {})'.format(record.student_cwid, record.section_number, record.course_number, record.grade))
+        data_file.write('({}, {}, {}, "{}")'.format(record.student_cwid, record.section_number, record.course_number, record.grade))
         if record == enrollment_records[-1]:
             data_file.write(';\n\n')
         else:

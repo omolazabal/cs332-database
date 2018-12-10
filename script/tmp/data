@@ -1,55 +1,55 @@
 INSERT INTO professor VALUES
-(609162068, "Angie Walters", "f", "5591 King Gardens Apt. 250", 10936, "Thomasborough", "SD", 79746, "mr", 696, 2367795),
-(095955784, "Donald Oliver", "f", "505 Carrie Forges Suite 153", 14663, "Maryhaven", "WA", 54179, "dr", 671, 8698940),
-(521355823, "John Clarke", "m", "5808 Mary Road Apt. 596", 94775, "Jameshaven", "VT", 64558, "mr", 743, 2641502);
+(686787972, "Dr. Julia Miller", "f", "4416 Reed Trail Apt. 013", 84473, "North Jeffrey", "CA", 87362, "mr", 265, 4509503),
+(665751218, "James Sanders", "m", "20087 Olsen Burg", 08290, "North Kristina", "UT", 71704, "mr", 945, 5562575),
+(734422712, "Katie Fletcher", "m", "78979 Bond Manor Apt. 663", 36912, "Lake Leahfort", "NV", 77610, "ms", 302, 9991015);
 
 INSERT INTO department VALUES
-(1, "BIO", "7063097354", "Blair", 095955784),
-(2, "BIO", "2078597667", "Stewart", 095955784);
+(1, "CS", "4030062678", "Jensen", 686787972),
+(2, "MUSIC", "3701628322", "Edwards", 734422712);
 
 INSERT INTO student VALUES
-(547448307, "Andrew", "Mccall", "24122 Miller Glen, North Stevenbury, WV 41383", 8544276015, 2),
-(545367582, "Roger", "Schmidt", "7185 Andrea Station, South Roberto, WA 64344", 2387594702, 2),
-(322494513, "Robert", "Evans", "061 Colleen Harbor, South Bryanburgh, AZ 14138", 9494411210, 1),
-(100389016, "Jeffrey", "Mejia", "2604 Patrick Heights Apt. 935, Port Brent, CO 93322", 6936807627, 2),
-(797762429, "Shawn", "Mclean", "034 James Radial Apt. 981, Brianville, MO 58972", 7457861454, 2),
-(442443456, "Cynthia", "Simmons", "714 James Fords, Port Jamestown, NJ 25752", 8810248311, 1),
-(441535710, "Raymond", "Thomas", "USNV Acosta, FPO AA 39529", 3225020788, 1),
-(598540758, "Jeremy", "Hicks", "5936 Kayla Drive Apt. 950, Garciaberg, MA 18965", 1506113272, 2);
+(898878683, "Barbara", "Mitchell", "869 Gary Walk, Lake Susanborough, KY 78804", 4806425617, 1),
+(863412151, "Norman", "Sanchez", "0129 Espinoza Plaza Apt. 670, Lisastad, WY 45748", 9602156609, 2),
+(128589408, "Chelsea", "Martin", "384 Joshua Center Suite 988, South Anthony, SD 89168", 7569064838, 1),
+(885742180, "Samuel", "Lin", "432 Craig View Apt. 350, Matthewshire, WY 63733", 1026227937, 2),
+(458905211, "Jill", "Rocha", "71421 Hodges Bridge Suite 057, New Donnaberg, SD 09939", 6896354313, 2),
+(890066057, "Mr.", "Powell", "97818 William Manor, Martinburgh, OH 50996", 2657179475, 1),
+(508940148, "Carlos", "Sims", "937 Melanie Locks, East Sarah, NE 15299", 9956484833, 2),
+(378921310, "Austin", "Smith", "6708 Tyler Stream Suite 295, Jenningsmouth, TX 09616", 1857707445, 2);
 
 INSERT INTO course VALUES
-(1, "BIO1", "Mendoza", 4, 1),
-(2, "BIO2", "DDS", 4, 2),
-(3, "BIO3", "Rodriguez", 3, 1),
-(4, "BIO4", "Jackson", 1, 1);
+(1, "CS1", "Doyle", 4, 1),
+(2, "CS2", "Hernandez", 2, 1),
+(3, "CS3", "Henry", 2, 1),
+(4, "MUSIC4", "Hudson", 4, 2);
 
 INSERT INTO section VALUES
-(1, 2, 521355823, "13:00:00", "14:00:00", 23, "sa,mo,tu,we,th", "Blair 337"),
-(2, 1, 521355823, "10:00:00", "11:00:00", 15, "sa,mo,tu,we,th", "Stewart 32"),
-(3, 2, 609162068, "8:00:00", "9:00:00", 12, "mo,tu,we", "Blair 318"),
-(4, 1, 609162068, "8:00:00", "9:00:00", 30, "sa,mo,tu", "Stewart 139"),
-(5, 2, 609162068, "15:00:00", "16:00:00", 0, "mo,tu,we,th", "Stewart 120"),
-(6, 4, 609162068, "17:00:00", "18:00:00", 6, "sa,mo,tu,we,th", "Blair 395");
+(1, 4, 686787972, "14:00:00", "15:00:00", 11, "tu", "Edwards 305"),
+(2, 1, 686787972, "13:00:00", "14:00:00", 14, "tu", "Jensen 152"),
+(3, 1, 734422712, "12:00:00", "13:00:00", 1, "mo,tu,we", "Jensen 350"),
+(4, 2, 734422712, "14:00:00", "15:00:00", 24, "mo,tu,we,th", "Edwards 373"),
+(5, 3, 665751218, "11:00:00", "12:00:00", 23, "sa,mo,tu,we", "Jensen 69"),
+(6, 4, 665751218, "14:00:00", "15:00:00", 27, "mo,tu,we,th", "Jensen 170");
 
 INSERT INTO enrollment VALUES
-(797762429, 2, 1, B),
-(547448307, 2, 1, A),
-(545367582, 1, 2, C+),
-(442443456, 1, 2, B),
-(797762429, 5, 2, A),
-(545367582, 6, 4, A),
-(322494513, 5, 2, A+),
-(442443456, 4, 1, F),
-(547448307, 5, 2, D),
-(100389016, 2, 1, F),
-(441535710, 3, 2, F),
-(322494513, 3, 2, A),
-(547448307, 4, 1, B-),
-(797762429, 1, 2, C),
-(322494513, 2, 1, D),
-(545367582, 4, 1, D),
-(441535710, 4, 1, C-),
-(797762429, 4, 1, C),
-(442443456, 3, 2, C),
-(545367582, 5, 2, A+);
+(885742180, 1, 4, "B"),
+(885742180, 2, 1, "C-"),
+(378921310, 4, 2, "F"),
+(890066057, 2, 1, "A+"),
+(508940148, 2, 1, "D"),
+(890066057, 3, 1, "A"),
+(378921310, 6, 4, "B-"),
+(898878683, 1, 4, "A+"),
+(378921310, 3, 1, "C+"),
+(458905211, 6, 4, "C-"),
+(508940148, 1, 4, "A-"),
+(128589408, 5, 3, "B-"),
+(890066057, 6, 4, "A"),
+(890066057, 5, 3, "B"),
+(863412151, 5, 3, "B+"),
+(508940148, 5, 3, "C-"),
+(458905211, 4, 2, "A-"),
+(128589408, 4, 2, "C"),
+(885742180, 6, 4, "B"),
+(378921310, 1, 4, "A-");
 
