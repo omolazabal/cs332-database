@@ -1,13 +1,12 @@
 <html>
 <body>
 <?php
-    $lines = explode("\n", file_get_contents('config'));
-    $link = mysql_connect($lines[0], $lines[1], $lines[2]);
+    $link = mysql_connect('', '', '');
     if (!$link) {
         die('Could not connect: ' . mysql_error());
     }
     echo 'Connected successfully<p>';
-    mysql_select_db($lines[1], $link);
+    mysql_select_db('', $link);
 
     $query = "SELECT * FROM professor WHERE ssn=" . $_POST["sno"];
     if (!$query) {
