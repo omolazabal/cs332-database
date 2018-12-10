@@ -107,9 +107,7 @@ def random_department(prof_list):
 
 def random_student(department_list):
     student = Student()
-    global cwid
-    student.cwid = cwid + 1
-    cwid += 1
+    student.cwid = ''.join(faker.ssn().split('-'))
     student.first_name = faker.name().split()[0]
     student.last_name = faker.name().split()[-1]
     student.phone = random.randint(1000000000, 9999999999)
@@ -160,7 +158,6 @@ sex = ('m', 'f')
 title = ('mr', 'dr', 'ms', 'mrs')
 department_names = ['CS', 'MATH', 'GEO', 'BIO', 'MUSIC', 'ART', 'ENG', 'CHEM']
 department_number = 0
-cwid = 0
 course_number = 0
 section_number = 0
 
