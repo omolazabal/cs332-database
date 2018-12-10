@@ -57,6 +57,36 @@
                         }
                     }
                     elseif(isset($_POST['prof_b'])) {
+                        $query = "SELECT distinct grade, count(student_cwid) as student_count
+                                  FROM enrollment e
+                                  WHERE e.course_number = " . $_POST["course_number"] .
+                                       "e.section_number = " . $_POST["section_number"] .
+                                 "GROUP BY grade";
+                        if (!$query) {
+                            echo 'Error: ' . mysql_error();
+                        }
+                        $result = mysql_query($query,$link);
+                        if (!$result) {
+                            echo 'Error: ' . mysql_error();
+                        }
+                        else {
+                            echo '<table class="uk-table uk-table-hover uk-table-divider">
+                            <thead>
+                                <tr>
+                                    <th>grade</th>
+                                    <th>student count</th>
+                                </tr>
+                            </thead>
+			    <tbody>';
+                            while($row = mysql_fetch_array($result)) {
+                                echo '<tr>
+                                        <td>' . $row['grade'] . '</td>
+                                        <td>' . $row['student_count'] . '</td>
+                                    </tr>';
+                            }
+			    echo '</tbody>';
+                            echo '</table>';
+                        }
                     }
                     elseif(isset($_POST['stu_a'])) {
                     }
