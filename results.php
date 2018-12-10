@@ -8,77 +8,90 @@
 		<link rel="stylesheet" type="text/css" href="css/uikit.min.css">
 	</head>
 	<body class="uk-height-1-1">
-		<div class="uk-flex uk-flex-center uk-flex-middle uk-background-secondary uk-height-viewport uk-light">
+		<div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
 			<div class="uk-position-bottom-center uk-position-small uk-visible@m">
 				<span class="uk-text-small uk-text-muted">© 2018 Marianne foundation - <a href="#">Created by Michael Rozsypal, Oscar Olazabal, Marianne Tolentino</a></span>
 			</div>
-			<div class="uk-width-medium uk-padding-small">
+			<div class="uk-padding-small">
                 <?php
                     $link = mysql_connect('', '', '');
                     if (!$link) {
-                        die('Could not connect: ' . mysql_error());
+                        echo 'Could not connect: ' . mysql_error();
                     }
-                    echo 'Connected successfully<p>';
                     mysql_select_db('', $link);
 
                     if(isset($_POST['prof_a'])) {
-                        // $query = "SELECT * FROM professor WHERE ssn=" . $_POST["sno"];
-                        $query = "SELECT * FROM professor";
+                        $query = "SELECT title, classroom, meeting_dates, begin_time, end_time
+                                  FROM professor p, section s
+                                  WHERE s.professor_ssn = " . $_POST["social_security_number"];
                         if (!$query) {
-                            die('Error: ' . mysql_error());
+                            echo 'Error: ' . mysql_error();
                         }
                         $result = mysql_query($query,$link);
                         if (!$result) {
-                            die('Error: ' . mysql_error());
+                            echo 'Error: ' . mysql_error();
                         }
                         else {
                             echo '<table class="uk-table uk-table-hover uk-table-divider">
                             <thead>
                                 <tr>
-                                    <th>ssn</th>
-                                    <th>name</th>
-                                    <th>sex</th>
-                                    <th>street</th>
-                                    <th>zip</th>
-                                    <th>city</th>
-                                    <th>state</th>
-                                    <th>salary</th>
                                     <th>title</th>
-                                    <th>phone area code</th>
-                                    <th>phone digits</th>
+                                    <th>classroom</th>
+                                    <th>meeting dates</th>
+                                    <th>begin time</th>
+                                    <th>end time</th>
                                 </tr>
-                            </thead>';
-                            while($row = mysqli_fetch_array($response)) {
-                                echo '<tbody>
-                                    <tr>
-                                        <td>' . $row['ssn'] . '</td>
-                                        <td>' . $row['name'] . '</td>
-                                        <td>' . $row['sex'] . '</td>
-                                        <td>' . $row['street'] . '</td>
-                                        <td>' . $row['zip'] . '</td>
-                                        <td>' . $row['city'] . '</td>
-                                        <td>' . $row['state'] . '</td>
-                                        <td>' . $row['salary'] . '</td>
+                            </thead>
+			    <tbody>';
+                            while($row = mysql_fetch_array($result)) {
+                                echo '<tr>
                                         <td>' . $row['title'] . '</td>
-                                        <td>' . $row['phone_area_code'] . '</td>
-                                        <td>' . $row['phone_digits'] . '</td>
-                                    </tr>
-                                </tbody>';
+                                        <td>' . $row['classroom'] . '</td>
+                                        <td>' . $row['meeting_dates'] . '</td>
+                                        <td>' . $row['begin_time'] . '</td>
+                                        <td>' . $row['end_time'] . '</td>
+                                    </tr>';
                             }
-                        echo '</table>';
+			    echo '</tbody>';
+                            echo '</table>';
                         }
                     }
                     elseif(isset($_POST['prof_b'])) {
-                        $query = "SELECT * FROM professor";
-
                     }
                     elseif(isset($_POST['stu_a'])) {
-                        $query = "SELECT * FROM student";
-
                     }
                     else {  // stu_b
-                        $query = "SELECT * FROM student";
-
+                        $query = "SELECT grade, title, e.course_number
+                                  FROM enrollment e, course c
+                                  WHERE e.course_number = c.course_number AND
+                                        e.student_cwid = " . $_POST["cwid"];
+                        if (!$query) {
+                            echo 'Error: ' . mysql_error();
+                        }
+                        $result = mysql_query($query,$link);
+                        if (!$result) {
+                            echo 'Error: ' . mysql_error();
+                        }
+                        else {
+                            echo '<table class="uk-table uk-table-hover uk-table-divider">
+                            <thead>
+                                <tr>
+                                    <th>title</th>
+                                    <th>course_number</th>
+                                    <th>grade</th>
+                                </tr>
+                            </thead>
+			    <tbody>';
+                            while($row = mysql_fetch_array($result)) {
+                                echo '<tr>
+                                        <td>' . $row['title'] . '</td>
+                                        <td>' . $row['course_number'] . '</td>
+                                        <td>' . $row['grade'] . '</td>
+                                    </tr>';
+                            }
+			    echo '</tbody>';
+                            echo '</table>';
+                        }
                     }
                     mysql_close($link);
                 ?>
