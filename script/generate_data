@@ -148,7 +148,8 @@ def random_enrollment(student_list, section_list):
     i = random.randint(0, len(section_list)-1)
     enroll.section_number = section_list[i].section_number
     enroll.course_number = section_list[i].course_number
-    enroll.grade = random.randint(50, 100)
+    i = random.randint(0, len(possible_grades)-1)
+    enroll.grade = possible_grades[i]
     return enroll
 
 filename = 'tmp/data'
@@ -157,6 +158,7 @@ meeting_dates = ('sa', 'mo', 'tu', 'we', 'th', 'fr')
 sex = ('m', 'f')
 title = ('mr', 'dr', 'ms', 'mrs')
 department_names = ['CS', 'MATH', 'GEO', 'BIO', 'MUSIC', 'ART', 'ENG', 'CHEM']
+possible_grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F']
 department_number = 0
 course_number = 0
 section_number = 0
