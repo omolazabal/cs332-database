@@ -58,10 +58,10 @@
                     }
                     elseif(isset($_POST['prof_b'])) {
                         $query = "SELECT distinct grade, count(student_cwid) as student_count
-                                  FROM enrollment e
-                                  WHERE e.course_number = " . $_POST["course_number"] .
-                                       "e.section_number = " . $_POST["section_number"] .
-                                 "GROUP BY grade";
+                                  FROM enrollment e 
+                                  WHERE e.course_number = " . $_POST["course_number"] . " 
+                                        AND e.section_number = " . $_POST["section_number"] . " 
+                                  GROUP BY grade";
                         if (!$query) {
                             echo 'Error: ' . mysql_error();
                         }
@@ -89,6 +89,45 @@
                         }
                     }
                     elseif(isset($_POST['stu_a'])) {
+                        $query = "SELECT s.section_number, classroom, meeting_dates, begin_time, end_time, count(student_cwid) as student_count 
+                                  FROM enrollment e, section s
+                                  WHERE e.course_number = " . $_POST["course_number"] . " 
+                                        AND s.course_number = " . $_POST["course_number"] . " 
+                                        AND e.section_number = s.section_number 
+                                 GROUP BY section_number";
+                        if (!$query) {
+                            echo 'Error: ' . mysql_error();
+                        }
+                        $result = mysql_query($query,$link);
+                        if (!$result) {
+                            echo 'Error: ' . mysql_error();
+                        }
+                        else {
+                            echo '<table class="uk-table uk-table-hover uk-table-divider">
+                            <thead>
+                                <tr>
+                                    <th>section number</th>
+                                    <th>classroom</th>
+                                    <th>meeting dates</th>
+                                    <th>begin time</th>
+                                    <th>end time</th>
+                                    <th>student count</th>
+                                </tr>
+                            </thead>
+			    <tbody>';
+                            while($row = mysql_fetch_array($result)) {
+                                echo '<tr>
+                                        <td>' . $row['section_number'] . '</td>
+                                        <td>' . $row['classroom'] . '</td>
+                                        <td>' . $row['meeting_dates'] . '</td>
+                                        <td>' . $row['begin_time'] . '</td>
+                                        <td>' . $row['end_time'] . '</td>
+                                        <td>' . $row['student_count'] . '</td>
+                                    </tr>';
+                            }
+			    echo '</tbody>';
+                            echo '</table>';
+                        }
                     }
                     else {  // stu_b
                         $query = "SELECT grade, title, e.course_number
