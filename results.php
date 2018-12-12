@@ -10,7 +10,7 @@
     <body class="uk-height-1-1">
         <div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
             <div class="uk-position-bottom-center uk-position-small uk-visible@m">
-                <span class="uk-text-small uk-text-muted">© 2018 Marianne foundation - <a href="#">Created by Michael Rozsypal, Oscar Olazabal, Marianne Tolentino</a></span>
+                <span class="uk-text-small uk-text-muted">© 2018 Marianne foundation - Created by Michael Rozsypal, Oscar Olazabal, Marianne Tolentino</span>
             </div>
             <div class="uk-padding-small">
             <a href="./"><legend class="uk-legend">Back</legend></a>
