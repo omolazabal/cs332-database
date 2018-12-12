@@ -13,6 +13,7 @@
 				<span class="uk-text-small uk-text-muted">© 2018 Marianne foundation - <a href="#">Created by Michael Rozsypal, Oscar Olazabal, Marianne Tolentino</a></span>
 			</div>
 			<div class="uk-padding-small">
+			<a href="./"><legend class="uk-legend">Back</legend></a>
                 <?php
                     $link = mysql_connect('', '', '');
                     if (!$link) {
@@ -28,9 +29,9 @@
                             echo 'Error: ' . mysql_error();
                         }
                         $result = mysql_query($query,$link);
-                        if (!$result) {
-                            echo 'Error: ' . mysql_error();
-                        }
+                        if (!$result or mysql_num_rows($result) <= 0) {
+                            echo 'No results found for social security number ' . $_POST["social_security_number"] . '.';
+			}
                         else {
                             echo '<table class="uk-table uk-table-hover uk-table-divider">
                             <thead>
@@ -66,8 +67,8 @@
                             echo 'Error: ' . mysql_error();
                         }
                         $result = mysql_query($query,$link);
-                        if (!$result) {
-                            echo 'Error: ' . mysql_error();
+                        if (!$result or mysql_num_rows($result) <= 0) {
+                            echo 'No results found for course number ' . $_POST["course_number"] . ' and section number ' . $_POST["section_number"] . '.';
                         }
                         else {
                             echo '<table class="uk-table uk-table-hover uk-table-divider">
@@ -99,8 +100,8 @@
                             echo 'Error: ' . mysql_error();
                         }
                         $result = mysql_query($query,$link);
-                        if (!$result) {
-                            echo 'Error: ' . mysql_error();
+                        if (!$result or mysql_num_rows($result) <= 0) {
+                            echo 'No results found for course number ' . $_POST["course_number"] . '.';
                         }
                         else {
                             echo '<table class="uk-table uk-table-hover uk-table-divider">
@@ -138,8 +139,8 @@
                             echo 'Error: ' . mysql_error();
                         }
                         $result = mysql_query($query,$link);
-                        if (!$result) {
-                            echo 'Error: ' . mysql_error();
+                        if (!$result or mysql_num_rows($result) <= 0) {
+                            echo 'No results found for CWID ' . $_POST["cwid"] . '.';
                         }
                         else {
                             echo '<table class="uk-table uk-table-hover uk-table-divider">
